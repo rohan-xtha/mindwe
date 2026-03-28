@@ -16,17 +16,17 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-[#F5F5F4]/80 backdrop-blur-xl border-b border-[#0A0A0A]/5 px-8 py-6 z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-white/40 backdrop-blur-2xl border-b border-[#5A5A40]/5 px-8 py-5 z-50 shadow-[0_4px_30px_rgb(0,0,0,0.01)]">
       <div className="max-w-[1400px] mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-full bg-[#0A0A0A] flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-500">
-            <Heart size={20} fill="currentColor" />
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#5A634A] to-[#4A4F3D] flex items-center justify-center text-white shadow-inner group-hover:scale-105 transition-transform duration-500">
+            <Heart size={18} fill="currentColor" />
           </div>
-          <span className="text-xl font-bold tracking-[-0.02em] text-[#0A0A0A]">MindSathi.</span>
+          <span className="text-xl font-serif font-medium tracking-tight text-[#3A4030]">Mind<span className="italic text-[#5A634A]">Sathi.</span></span>
         </Link>
         
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-1 bg-[#0A0A0A]/5 p-1 rounded-full">
+        <div className="hidden lg:flex items-center gap-1 bg-white/50 p-1.5 rounded-full border border-white shadow-sm backdrop-blur-md">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
@@ -35,10 +35,10 @@ export default function Navbar() {
                 key={item.path}
                 to={item.path}
                 className={cn(
-                  "flex items-center gap-2 px-6 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-300",
+                  "flex items-center gap-2 px-5 py-2 rounded-full text-[13px] font-medium transition-all duration-300",
                   isActive 
-                    ? "text-white bg-[#0A0A0A] shadow-lg" 
-                    : "text-[#0A0A0A]/40 hover:text-[#0A0A0A] hover:bg-white/50"
+                    ? "text-[#F4F5F0] bg-[#4A4F3D] shadow-md" 
+                    : "text-[#4A4F3D]/60 hover:text-[#3A4030] hover:bg-white/60"
                 )}
               >
                 <Icon size={14} />
@@ -48,34 +48,34 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
           <Link
             to="/therapy"
-            className="hidden sm:block text-[13px] font-bold text-[#0A0A0A] hover:opacity-60 transition-opacity"
+            className="hidden sm:block text-[13px] font-medium text-[#4A4F3D]/80 hover:text-[#3A4030] transition-colors"
           >
             Support
           </Link>
           <Link
             to="/chat"
-            className="px-6 py-2.5 bg-[#0A0A0A] text-white rounded-full text-[13px] font-bold hover:scale-105 active:scale-95 transition-all"
+            className="px-6 py-2.5 bg-gradient-to-r from-[#5A634A] to-[#4A4F3D] text-[#F4F5F0] rounded-full text-[13px] font-medium hover:shadow-lg hover:shadow-[#5A634A]/20 active:scale-95 transition-all"
           >
             Talk to AI
           </Link>
 
           {/* Mobile Menu Button */}
           <button 
-            className="lg:hidden text-[#0A0A0A]"
+            className="lg:hidden text-[#4A4F3D] p-2 bg-white/50 rounded-full border border-white"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 bg-[#F5F5F4] z-40 flex flex-col items-center justify-center lg:hidden">
-          <div className="flex flex-col gap-6">
+        <div className="fixed inset-0 bg-[#F4F5F0]/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center lg:hidden">
+          <div className="flex flex-col gap-4 w-full max-w-sm px-6">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -84,33 +84,35 @@ export default function Navbar() {
                   key={item.path}
                   to={item.path}
                   className={cn(
-                    "flex items-center gap-3 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300",
+                    "flex items-center gap-4 px-6 py-4 rounded-2xl text-[15px] font-medium transition-all duration-300",
                     isActive 
-                      ? "text-white bg-[#0A0A0A] shadow-lg" 
-                      : "text-[#0A0A0A]/60 hover:text-[#0A0A0A] hover:bg-white/50"
+                      ? "text-[#F4F5F0] bg-[#4A4F3D] shadow-lg shadow-[#4A4F3D]/10" 
+                      : "text-[#4A4F3D]/70 bg-white/50 hover:text-[#3A4030] hover:bg-white"
                   )}
-                  onClick={() => setIsOpen(false)} // Close menu on item click
+                  onClick={() => setIsOpen(false)}
                 >
-                  <Icon size={20} />
+                  <div className={cn("p-2 rounded-xl", isActive ? "bg-white/10" : "bg-[#F4F5F0]")}>
+                    <Icon size={18} />
+                  </div>
                   <span>{item.label}</span>
                 </Link>
               );
             })}
           </div>
-          <div className="mt-10 flex flex-col gap-4">
+          <div className="mt-8 flex flex-col gap-4 w-full max-w-sm px-6">
             <Link
               to="/therapy"
-              className="px-8 py-4 bg-[#0A0A0A]/5 text-[#0A0A0A] rounded-full text-lg font-bold text-center hover:bg-[#0A0A0A]/10 transition-all"
+              className="px-6 py-4 bg-white/60 text-[#4A4F3D] rounded-2xl text-[15px] font-medium text-center hover:bg-white transition-all border border-white"
               onClick={() => setIsOpen(false)}
             >
-              Support
+              Support Community
             </Link>
             <Link
               to="/chat"
-              className="px-8 py-4 bg-[#0A0A0A] text-white rounded-full text-lg font-bold text-center hover:scale-105 active:scale-95 transition-all"
+              className="px-6 py-4 bg-gradient-to-r from-[#5A634A] to-[#4A4F3D] text-[#F4F5F0] rounded-2xl text-[15px] font-medium text-center hover:shadow-xl hover:shadow-[#5A634A]/20 active:scale-95 transition-all"
               onClick={() => setIsOpen(false)}
             >
-              Talk to AI
+              Talk to AI Sathi
             </Link>
           </div>
         </div>

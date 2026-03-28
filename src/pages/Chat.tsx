@@ -87,18 +87,18 @@ export default function Chat() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5F4] pt-24 flex flex-col lg:flex-row">
+    <div className="min-h-[calc(100vh-80px)] mt-20 bg-transparent flex flex-col lg:flex-row relative z-10 w-full max-w-[1600px] mx-auto xl:px-8 xl:pb-8">
       {/* Left Pane - Chat Area */}
-      <div className="flex-1 flex flex-col border-r border-[#0A0A0A]/5">
-        <header className="p-8 border-b border-[#0A0A0A]/5 flex items-center gap-4 bg-white/50 backdrop-blur-md">
-          <div className="w-12 h-12 rounded-full bg-[#5A5A40] flex items-center justify-center">
-            <Sparkles size={24} className="text-white" />
+      <div className="flex-1 flex flex-col xl:rounded-l-[40px] xl:border border-[#5A5A40]/10 bg-white/40 backdrop-blur-2xl shadow-[0_8px_32px_rgb(0,0,0,0.02)] xl:border-r-0 overflow-hidden">
+        <header className="p-6 lg:p-8 border-b border-[#5A5A40]/10 flex items-center gap-4 bg-white/30 backdrop-blur-xl shrink-0">
+          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#5A634A] to-[#4A4F3D] shadow-inner flex items-center justify-center">
+            <Sparkles size={22} className="text-[#F4F5F0]" />
           </div>
-          <div className="space-y-1">
-            <h1 className="text-2xl font-bold tracking-tight text-[#5A5A40]">AI Sathi</h1>
+          <div className="space-y-0.5">
+            <h1 className="text-2xl font-serif text-[#3A4030]">AI Companion</h1>
             <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-[10px] uppercase tracking-widest font-bold text-[#5A5A40]/60">Active Session</span>
+              <div className="w-1.5 h-1.5 bg-emerald-400/80 rounded-full animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
+              <span className="text-[10px] uppercase tracking-widest font-medium text-[#4A4F3D]/50">Present and listening</span>
             </div>
           </div>
           {/* Toggle button for sidebar on mobile */}
@@ -119,15 +119,15 @@ export default function Chat() {
               className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {msg.role === 'ai' && (
-                <div className="w-8 h-8 rounded-full bg-[#5A5A40] flex items-center justify-center mr-3 self-end">
-                  <Sparkles size={16} className="text-white" />
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#5A634A] to-[#4A4F3D] shadow-sm flex items-center justify-center mr-3 self-end shrink-0">
+                  <Sparkles size={14} className="text-[#F4F5F0]" />
                 </div>
               )}
               <div className={cn(
-                "max-w-[80%] p-6 text-[15px] leading-relaxed shadow-sm transition-all",
+                "max-w-[80%] p-5 sm:p-6 text-[15px] leading-relaxed transition-all",
                 msg.role === 'user'
-                  ? "bg-[#5A5A40] text-white rounded-bl-3xl rounded-br-3xl rounded-tl-3xl"
-                  : "bg-white text-[#5A5A40] border border-[#5A5A40]/10 rounded-bl-3xl rounded-br-3xl rounded-tr-3xl"
+                  ? "bg-[#4A4F3D] text-[#F4F5F0] rounded-tl-3xl rounded-tr-[4px] rounded-bl-3xl rounded-br-3xl shadow-sm"
+                  : "bg-white/80 backdrop-blur-sm text-[#3A4030] rounded-tl-[4px] rounded-tr-3xl rounded-bl-3xl rounded-br-3xl shadow-[0_4px_20px_rgb(0,0,0,0.02)] border border-white"
               )}>
                 {msg.text}
               </div>
@@ -171,9 +171,9 @@ export default function Chat() {
 
       {/* Right Pane - Insights Area */}
       <aside className={cn(
-        "fixed inset-y-0 right-0 w-full bg-[#F5F5F0] p-8 space-y-8 overflow-y-auto z-40 transform transition-transform duration-300 ease-in-out",
+        "fixed inset-y-0 right-0 w-full bg-white/50 backdrop-blur-2xl p-6 lg:p-8 space-y-8 overflow-y-auto z-40 transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[-20px_0_40px_rgb(0,0,0,0.02)]",
         isSidebarOpen ? "translate-x-0" : "translate-x-full",
-        "lg:relative lg:translate-x-0 lg:w-[400px] lg:border-l lg:border-[#0A0A0A]/5" // Desktop styles
+        "lg:relative lg:translate-x-0 lg:w-[400px] xl:rounded-r-[40px] xl:border border-[#5A5A40]/10 xl:border-l-0" // Desktop styles
       )}>
         <div className="lg:hidden flex justify-end mb-4">
           <button 
@@ -244,15 +244,18 @@ export default function Chat() {
           </AnimatePresence>
         </div>
 
-        <div className="pt-8 border-t border-[#5A5A40]/5">
-          <div className="p-6 rounded-[32px] bg-[#5A5A40] text-white space-y-4">
-            <h4 className="text-sm font-bold">Need immediate help?</h4>
-            <p className="text-[11px] text-white/60 leading-relaxed">
-              If you are in immediate danger, please contact emergency services or a crisis hotline.
-            </p>
-            <Link to="/professionals" className="block w-full py-3 bg-white text-[#5A5A40] rounded-full text-center text-xs font-bold hover:scale-105 transition-all">
-              Find a Professional
-            </Link>
+        <div className="pt-8 border-t border-[#5A5A40]/10">
+          <div className="p-6 sm:p-8 rounded-[32px] bg-gradient-to-br from-[#5A634A] to-[#4A4F3D] shadow-lg text-white space-y-5 relative overflow-hidden">
+            <div className="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+            <div className="relative z-10 space-y-4">
+              <h4 className="text-lg font-serif">Need immediate help?</h4>
+              <p className="text-[13px] text-white/80 leading-relaxed font-light">
+                If you are in immediate danger, please contact emergency services or a crisis hotline.
+              </p>
+              <Link to="/professionals" className="block w-full py-4 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md rounded-full text-center text-[13px] font-medium transition-all active:scale-95 text-white shadow-sm">
+                Find a Professional
+              </Link>
+            </div>
           </div>
         </div>
       </aside>

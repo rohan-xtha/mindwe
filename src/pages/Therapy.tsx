@@ -104,7 +104,7 @@ export default function Therapy() {
   return (
     <div className="min-h-screen bg-[#F5F5F4] pt-24 flex flex-col lg:flex-row">
       {/* Left Pane - Community Feed */}
-      <div className="flex-1 p-8 lg:p-16 space-y-12 overflow-y-auto border-r border-[#0A0A0A]/5">
+      <div className="flex-1 p-8 lg:p-16 space-y-12 overflow-y-auto border-r border-[#5A5A40]/5">
         <header className="space-y-2 mb-8 flex justify-between items-start">
           <div>
             <p className="text-sm uppercase tracking-widest text-[#5A5A40]/60">Community Ecosystem</p>
@@ -155,11 +155,11 @@ export default function Therapy() {
       <aside className={cn(
         "fixed inset-0 bg-white p-8 space-y-8 overflow-y-auto z-40 transform transition-transform duration-300 ease-in-out",
         isRightPaneOpen ? "translate-x-0" : "translate-x-full",
-        "lg:relative lg:translate-x-0 lg:w-[450px] lg:border-l lg:border-[#0A0A0A]/5" // Desktop styles
+        "lg:relative lg:translate-x-0 lg:w-[450px] lg:border-l lg:border-[#5A5A40]/5" // Desktop styles
       )}>
         <div className="lg:hidden flex justify-end mb-4">
           <button 
-            className="text-[#0A0A0A]"
+            className="text-[#5A5A40]"
             onClick={() => setIsRightPaneOpen(false)}
           >
             <X size={24} />
@@ -168,7 +168,7 @@ export default function Therapy() {
         <div className="sticky top-8 space-y-8"> {/* Adjusted top for mobile overlay */}
           <div className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">Share your thoughts.</h2>
-            <p className="text-sm text-[#0A0A0A]/40 leading-relaxed">
+            <p className="text-sm text-[#5A5A40]/40 leading-relaxed">
               Your voice matters. Share anonymously with the community.
             </p>
           </div>
@@ -178,23 +178,23 @@ export default function Therapy() {
               value={newPost}
               onChange={(e) => setNewPost(e.target.value)}
               placeholder="What's on your mind?"
-              className="w-full min-h-[240px] p-6 rounded-[32px] bg-[#F5F5F4] border border-[#0A0A0A]/5 focus:border-[#0A0A0A] focus:ring-0 resize-none text-lg font-medium text-[#0A0A0A] placeholder:text-[#0A0A0A]/20 outline-none transition-all"
+              className="w-full min-h-[240px] p-6 rounded-[32px] bg-[#F5F5F4] border border-[#5A5A40]/5 focus:border-[#5A5A40] focus:ring-0 resize-none text-lg font-medium text-[#5A5A40] placeholder:text-[#5A5A40]/20 outline-none transition-all"
             />
             <button
               onClick={handlePost}
               disabled={!newPost.trim()}
-              className="w-full py-5 bg-[#0A0A0A] text-white rounded-full font-bold text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-20"
+              className="w-full py-5 bg-[#5A5A40] text-white rounded-full font-bold text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-20"
             >
               Post Anonymously
             </button>
           </div>
 
-          <div className="p-8 rounded-[32px] bg-[#F5F5F4] border border-[#0A0A0A]/5 space-y-4">
-            <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[#0A0A0A]/40">
+          <div className="p-8 rounded-[32px] bg-[#F5F5F4] border border-[#5A5A40]/5 space-y-4">
+            <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[#5A5A40]/40">
               <ShieldCheck size={14} />
               <span>Safety Protocol</span>
             </div>
-            <p className="text-[11px] text-[#0A0A0A]/60 leading-relaxed">
+            <p className="text-[11px] text-[#5A5A40]/60 leading-relaxed">
               All posts are moderated to ensure a safe and supportive environment for everyone.
             </p>
           </div>
