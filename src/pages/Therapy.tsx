@@ -4,6 +4,9 @@ import { Send, User, MessageCircle, Heart, Users, ShieldCheck, Edit, X } from "l
 import PostCard from "../components/PostCard";
 import { cn } from "@/src/lib/utils";
 
+// Import the Reply interface from PostCard
+import { Reply } from "../components/PostCard";
+
 interface Post {
   id: string;
   author: string;
@@ -11,6 +14,7 @@ interface Post {
   timestamp: string;
   likes: number;
   isVerified?: boolean;
+  replies?: Reply[]; // Add replies to the Post interface
 }
 
 export default function Therapy() {
@@ -22,14 +26,59 @@ export default function Therapy() {
       timestamp: "2 hours ago",
       likes: 24,
       isVerified: false,
+      replies: [
+        {
+          author: "Dr. Elara Vance",
+          content: "That's a wonderful and brave step! Acknowledging your feelings and seeking support is a sign of immense strength. Remember, every small step forward is progress. Keep nurturing that sense of lightness.",
+          timestamp: "1 hour ago",
+          isVerified: true,
+        },
+        {
+          author: "Supportive Soul",
+          content: "So proud of you for taking that step! It really does get lighter. We're all here for you.",
+          timestamp: "30 minutes ago",
+        }
+      ]
     },
     {
       id: "2",
       author: "Mindful Explorer",
       content: "Breath is the bridge which connects life to consciousness, which unites your body to your thoughts. Today I am simply breathing.",
-      timestamp: "",
+      timestamp: "5 hours ago",
       likes: 15,
       isVerified: true,
+      replies: [
+        {
+          author: "Dr. Alex Chen",
+          content: "A beautiful reminder, Mindful Explorer. Focusing on the breath is a powerful anchor in the present moment, fostering calm and clarity. Keep exploring this connection.",
+          timestamp: "2 hours ago",
+          isVerified: true,
+        }
+      ]
+    },
+    {
+      id: "3",
+      author: "Quiet Observer",
+      content: "Sometimes the silence is the loudest. Trying to find my voice again amidst the noise.",
+      timestamp: "1 day ago",
+      likes: 8,
+      isVerified: false,
+      replies: [
+        {
+          author: "Dr. Maya Singh",
+          content: "It takes courage to acknowledge the weight of silence and to seek your voice. Remember, your voice is valuable, and it's okay to take your time to find it. We're here to listen when you're ready.",
+          timestamp: "18 hours ago",
+          isVerified: true,
+        }
+      ]
+    },
+    {
+      id: "4",
+      author: "Hopeful Heart",
+      content: "Feeling a glimmer of hope today after a long time. Holding onto it tightly.",
+      timestamp: "3 days ago",
+      likes: 30,
+      isVerified: false,
     }
   ]);
 
@@ -45,6 +94,7 @@ export default function Therapy() {
       timestamp: "Just now",
       likes: 0,
       isVerified: false,
+      replies: [], // New posts start with no replies
     };
     setPosts([post, ...posts]);
     setNewPost("");
@@ -94,6 +144,7 @@ export default function Therapy() {
                 supportCount={post.isVerified ? undefined : post.likes}
                 resonatesCount={post.isVerified ? post.likes : undefined}
                 isVerified={post.isVerified}
+                replies={post.replies} // Pass replies to PostCard
               />
             ))}
           </AnimatePresence>

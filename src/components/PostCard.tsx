@@ -1,6 +1,13 @@
 import React from 'react';
 import { Heart, MessageSquare, Sparkles, User } from 'lucide-react';
 
+interface Reply {
+  author: string;
+  content: string;
+  timestamp: string;
+  isVerified?: boolean;
+}
+
 interface PostCardProps {
   author: string;
   time: string;
@@ -8,6 +15,7 @@ interface PostCardProps {
   supportCount?: number;
   resonatesCount?: number;
   isVerified?: boolean;
+  replies?: Reply[]; // New property for replies
 }
 
 const PostCard: React.FC<PostCardProps> = ({
@@ -17,6 +25,7 @@ const PostCard: React.FC<PostCardProps> = ({
   supportCount,
   resonatesCount,
   isVerified = false,
+  replies, // Destructure replies
 }) => {
   const cardClasses = isVerified
     ? "bg-[#F5F3FF] rounded-3xl p-6 shadow-sm border border-[#5A5A40]/10"
@@ -70,6 +79,33 @@ const PostCard: React.FC<PostCardProps> = ({
           </button>
         )}
       </div>
+
+      {/* Replies Section */}
+      {replies && replies.length > 0 && (
+        <div className="mt-6 pt-4 border-t border-[#0A0A0A]/5 space-y-4">
+          {replies.map((reply, index) => (
+            <div key={index} className="flex items-start space-x-3">
+              {reply.isVerified ? (
+                <div className="w-8 h-8 bg-[#DDD6FE] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Sparkles size={16} className="text-[#8B5CF6]" />
+                </div>
+              ) : (
+                <div className="w-8 h-8 bg-[#E0E0E0] rounded-full flex items-center justify-center flex-shrink-0">
+                  <User size={16} className="text-[#5A5A40]" />
+                </div>
+              )}
+              <div className="flex-1">
+                <p className="font-semibold text-[#5A5A40] text-sm">{reply.author}</p>
+                {reply.isVerified && (
+                  <p className="text-xs text-[#8B5CF6] font-medium">VERIFIED DOCTOR</p>
+                )}
+                <p className="text-xs text-[#5A5A40]/60 mb-1">{reply.timestamp}</p>
+                <p className="text-[#5A5A40] text-sm">{reply.content}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
